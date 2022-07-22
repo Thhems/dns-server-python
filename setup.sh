@@ -1,11 +1,28 @@
 #! /usr/bin/env bash
 
-sudo ./stop.sh
+usage() { echo "Usage: $0 [-h (Normal mode) || -p (Portail captif)]" 1>&2; exit 1; }
 
-echo "[*] Starting"
-echo "[*] Starting dhcp server"
-sudo service isc-dhcp-server start
-echo "[*] Starting dns server"
-sudo gnome-terminal -- bash -c "dns/dnsserver.py;exec bash"
+while getopts ":np" o; do
+    	case "${o}" in
+        n)
+		sudo ./stop.sh
+		echo "[*] Starting"
+		echo "[*] Starting dhcp server"
+		sudo service isc-dhcp-server start
+		echo "[*] Starting dns server"
+		sudo gnome-terminal -- bash -c "dns/dnsserver.py;exec bash"
+		;;
+	p)
+		sudo ./stop.sh
+                echo "[*] Starting"
+                echo "[*] Starting dhcp server"
+                sudo service isc-dhcp-server start
+                echo "[*] Starting dns server with captive portal"
+                sudo gnome-terminal -- bash -c "dns/dnsserverpc.py;exec bash"
+		;;
 
-exit 0
+	*)
+		usage
+		;;
+	esac
+done

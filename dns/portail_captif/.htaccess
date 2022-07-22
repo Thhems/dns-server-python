@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 #INSERT#
 	
-RewriteRule . http://192.168.1.1/index.php [L]
+RewriteRule . http://portail.captif.dns.serveur.com/index.php [L]
