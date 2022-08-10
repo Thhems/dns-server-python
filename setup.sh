@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-usage() { echo "Usage: $0 [-h (Normal mode) || -p (Portail captif)]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-n (Normal mode) || -p (Portail captif)]" 1>&2; exit 1; }
 
 while getopts ":np" o; do
     	case "${o}" in
